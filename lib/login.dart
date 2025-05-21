@@ -1,58 +1,48 @@
 import 'package:flutter/material.dart';
+import 'dashboard.dart'; // Import the dashboard screen
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
-
-  @override
-  _LoginScreenState createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController emailController = TextEditingController();
+class LoginPage extends StatelessWidget {
+  final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  void login() {
-    final email = emailController.text;
-    final password = passwordController.text;
-
-    // Example print (in real app: validate or send to backend)
-    print('Logging in with email: $email and password: $password');
-
-    // Optional: show snackbar
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text('Attempting login...')));
+  void login(BuildContext context) {
+    // Dummy login logic: you can add real auth here
+    if (usernameController.text == "admin" &&
+        passwordController.text == "1234") {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => DashboardPage()),
+      );
+    } else {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Invalid username or password")));
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Login')),
+      appBar: AppBar(title: Text("Login")),
       body: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextField(
-              controller: emailController,
-              decoration: InputDecoration(
-                labelText: 'Email',
-                prefixIcon: Icon(Icons.email),
-                border: OutlineInputBorder(),
-              ),
+              controller: usernameController,
+              decoration: InputDecoration(labelText: "Username"),
             ),
-            const SizedBox(height: 16),
             TextField(
               controller: passwordController,
+              decoration: InputDecoration(labelText: "Password"),
               obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Password',
-                prefixIcon: Icon(Icons.lock),
-                border: OutlineInputBorder(),
-              ),
             ),
-            const SizedBox(height: 24),
-            ElevatedButton(onPressed: login, child: Text('Login')),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => login(context),
+              child: Text("Login"),
+            ),
           ],
         ),
       ),

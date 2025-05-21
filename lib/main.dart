@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
-import 'login.dart'; // <-- Make sure this is here
+import 'dashboard.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Smart Agriculture App',
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Login App',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: LoginScreen(), // <-- Replace MyHomePage
+      home: DashboardPage(), // 👈 Default starting page
     );
   }
 }
