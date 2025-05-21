@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'dashboard.dart';
+=======
+import 'login.dart'; // 
+>>>>>>> d01732995bacbc946d5d00f2714a72b656f038b3
 
 void main() {
   runApp(MyApp());
